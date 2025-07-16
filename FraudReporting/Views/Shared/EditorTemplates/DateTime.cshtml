@@ -1,0 +1,25 @@
+﻿@model DateTime?
+@{
+    var htmlAttributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(ViewData["htmlAttributes"]);
+    htmlAttributes.Add("onchange", "this.setAttribute('value', this.value);");
+    htmlAttributes.Add("value", Html.ValueForModel());
+    htmlAttributes.Add("aria_describedby", Html.IdForModel() + "Error");
+    htmlAttributes.Add("type", "date");
+
+    string prepend = ViewBag.prepend;
+}
+
+<div class="input-group">
+    @if (!String.IsNullOrEmpty(prepend))
+    {
+        <div class="input-group-prepend">
+            <span class="input-group-text">@prepend</span>
+        </div>
+    }
+    <div class="input-container input-datetime">
+        @Html.TextBoxFor(x => x, "{0:yyyy-MM-dd}", htmlAttributes)
+        <label for="@Html.IdForModel()">@Html.DisplayNameForModel() @if (htmlAttributes.Where(x => x.Key.ToUpper() == "REQUIRED").Count() > 0) {<span class="req">*</span>}</label>
+    </div>
+</div>
+
+@Html.ValidationMessageFor(x => x, "", new { id = Html.IdForModel() + "Error" })

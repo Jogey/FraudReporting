@@ -1,0 +1,149 @@
+﻿//Misc. Classes
+
+.error-modal {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-bottom: 16px;
+    padding: 0.5rem 1rem;
+    background: #ffd3c9;
+    border: 1px solid #e0383a;
+    border-radius: 6px;
+    color: #333333;
+    text-align: center;
+
+    .error-modal-title {
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+            font-size: 1.2rem;
+            color: #e0383a !important;
+            margin-right: 0.4rem;
+        }
+    }
+
+    .error-modal-verbiage {
+        font-weight: 500;
+        margin-top: 0.5rem;
+    }
+}
+
+.req {
+    color:#ff0000;
+}
+
+ul.indented {
+    margin-left:32px;
+
+    > li {
+        margin-bottom:12px;
+
+        &:last-child {
+            margin-bottom:0px;
+        }
+    }
+}
+
+
+//Spacers
+
+$spacer-size: 8px;
+
+@mixin spacer-base() {
+    border:none;
+    padding:0px;
+    margin:0px;
+}
+
+@mixin spacer-inline-base() {
+    display:inline-block;
+    border:none;
+    padding:0px;
+    margin:0px;
+    height:$spacer-size;
+}
+
+hr.spacer {
+    @include spacer-base();
+    height:$spacer-size;
+}
+
+hr.spacer2 {
+    @include spacer-base();
+    height:$spacer-size * 2;
+}
+
+hr.spacer3 {
+    @include spacer-base();
+    height:$spacer-size * 3;
+}
+
+hr.spacer4 {
+    @include spacer-base();
+    height:$spacer-size * 4;
+}
+
+hr.inline-spacer {
+    @include spacer-inline-base();
+    width:$spacer-size;
+}
+
+hr.inline-spacer2 {
+    @include spacer-inline-base();
+    width:$spacer-size * 2;
+}
+
+hr.inline-spacer3 {
+    @include spacer-inline-base();
+    width:$spacer-size * 3;
+}
+
+hr.inline-spacer4 {
+    @include spacer-inline-base();
+    width:$spacer-size * 4;
+}
+
+
+//Utility Classes
+
+.utilWidth100 {
+    width:100%;
+}
+
+.utilHeight100 {
+    height:100%;
+}
+
+.utilDispInlineBlock {
+    display:inline-block;
+}
+
+.utilDispInlineTable {
+    display:inline-table;
+}
+
+.utilDispTable {
+    display:table;
+}
+
+.utilDispTableRow {
+    display:table-row;
+}
+
+.utilDispTableCell { 
+    display:table-cell;
+}
+
+.utilVertAlignTop {
+    vertical-align:top;
+}
+
+.utilVertAlignMiddle {
+    vertical-align:middle;
+}
+
+.utilVertAlignBottom {
+    vertical-align:bottom;
+}

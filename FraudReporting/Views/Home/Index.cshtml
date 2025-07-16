@@ -1,0 +1,127 @@
+﻿@model FormViewModel
+@inject IPathService pathService
+@{
+    ViewData["Title"] = "Home Page";
+}
+@section AdditionalScriptsBodyEnd {
+    <script>
+        $(function () {
+            $('[type=range]').each(function () {
+                $(this).parent().children('label').children('span').html($(this).val());
+            });
+
+            $('[type=range]').on('input', function () {
+                $(this).parent().children('label').children('span').html($(this).val());
+            });
+        });
+    </script>
+}
+
+
+<div class="@ViewHelper.GetCssClassViewWrapper()">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="error-modal">
+            <div class="error-modal-title"><span class="icon"><i class="fa fa-exclamation-circle"></i></span>Something went wrong.</div>
+            @if (ViewData.ModelState["General"] != null)
+            {
+                <div class="error-modal-verbiage">
+                    @foreach (var error in ViewData.ModelState["General"].Errors) { <text>@error.ErrorMessage</text><br /> }
+                </div>
+            }
+            else
+            {
+                <div class="error-modal-verbiage">Please correct the highlighted errors below.</div>
+            }
+        </div>
+    }
+
+    <h1>@ApfSettings.Website.Title</h1>
+    <br />
+    <p>This is a proof-of-concept tool that analyzes an uploaded list of records and reports back on fraud findings. It takes a defined spreadsheet file (format given below) and vets through every record in the list to perform a sophisticated set of rules-based validation on common entry fields.</p>
+    <p><a href="~/documents/SpreadsheetFormat.xlsx" download="SpreadsheetFormat">Download Spreadsheet Format</a></p>
+    <br />
+
+    <form method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    @Html.EditorFor(model => model.ValidationScope, new { htmlAttributes = new { @class = "form-control", required = true }, dropdownlist = Model.GetValidationScopes() })
+                </div>
+                <div class="col-md-2 mb-3">
+                    @Html.EditorFor(model => model.ConfidenceThreshold, new { htmlAttributes = new { @class = "form-control", required = true } })
+                </div>
+                <div class="col-md-2 mb-3">
+                    @Html.EditorFor(model => model.CountThreshold, new { htmlAttributes = new { @class = "form-control", required = true } })
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="form-control mb-3">
+                <h6>Scoring Parameters</h6>
+                <p class="hint">*Records are validated on the following categories below, which produce a score if detected as suspicious. These scores are then summed together and compared against the confidence value to determine whether a record should be flagged as fraud.</p>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="@nameof(Model.FraudScoringIPAddress)" class="input-range-label form-label">Similar IP Addresses: <span></span></label>
+                        @Html.TextBoxFor(model => model.FraudScoringIPAddress, new { @class="form-range", type="range", min="0.0", max="1.0", step="0.05" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="@nameof(Model.FraudScoringAddress)" class="input-range-label form-label">Similar Physical Addresses: <span></span></label>
+                        @Html.TextBoxFor(model => model.FraudScoringAddress, new { @class = "form-range", type = "range", min = "0.0", max = "1.0", step = "0.05" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="@nameof(Model.FraudScoringZip4)" class="input-range-label form-label">Non-Zip4: <span></span></label>
+                        @Html.TextBoxFor(model => model.FraudScoringZip4, new { @class = "form-range", type = "range", min = "0.0", max = "1.0", step = "0.05" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="@nameof(Model.FraudScoringEmail)" class="input-range-label form-label">Email-to-Name Unlikeness: <span></span></label>
+                        @Html.TextBoxFor(model => model.FraudScoringEmail, new { @class = "form-range", type = "range", min = "0.0", max = "1.0", step = "0.05" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="@nameof(Model.FraudScoringEmailProvider)" class="input-range-label form-label">Uncommon Email Provider: <span></span></label>
+                        @Html.TextBoxFor(model => model.FraudScoringEmailProvider, new { @class = "form-range", type = "range", min = "0.0", max = "1.0", step = "0.05" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="@nameof(Model.FraudScoringPhoneNumber)" class="input-range-label form-label">Invalid Area Code: <span></span></label>
+                        @Html.TextBoxFor(model => model.FraudScoringPhoneNumber, new { @class = "form-range", type = "range", min = "0.0", max = "1.0", step = "0.05" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-8 mb-3">
+                <div class="form-check">
+                    @Html.CheckBoxFor(model => model.DownloadOuput, new { @class = "form-check-input float-left" })
+                    <label for="@nameof(Model.DownloadOuput)" class="form-check-label">Download List of Suspected Fraud Records?</label>
+                    @Html.ValidationMessageFor(model => model.DownloadOuput)
+                </div>
+            </div>
+            <div class="col-md-8 mb-3">
+                <div class="form-check">
+                    @Html.CheckBoxFor(model => model.UseParallelThreading, new { @class = "form-check-input float-left" })
+                    <label for="@nameof(Model.UseParallelThreading)" class="form-check-label">Use Parallel Threading?</label>
+                    <div class="hint">*This is an experimental feature that will process records MUCH faster but may not produce accurate statistics.</div>
+                    @Html.ValidationMessageFor(model => model.UseParallelThreading)
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    @Html.EditorFor(model => model.FileUpload, new { htmlAttributes = new { @class = "IFormFile form-control", required = true }, filetype = "Spreadsheet", maximum = "1" })
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="container">
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        </div>
+    </form>
+</div>

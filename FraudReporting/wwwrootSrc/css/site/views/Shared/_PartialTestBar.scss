@@ -1,0 +1,53 @@
+﻿#{$classSiteWrapper} .PartialTestBar {
+    border-top:2px solid #e3a19f;
+    border-bottom:2px solid #641614;
+    padding:6px 2px;
+    background-color:#c04542;
+    
+    font-size:12px;
+    font-family:Arial,​Sans-Serif;
+    line-height:initial;
+    color:#FFF;
+    text-shadow: 1px 1px 1px #000;
+
+
+    > .testHeader
+    {
+
+    } 
+
+    > .testBody
+    {
+        text-align:left;
+        padding-top:16px;
+        padding-left:16px;
+    }
+
+    a {
+        text-decoration:underline;
+        color:#FFF;
+        text-shadow: 1px 1px 1px #000;
+        cursor:pointer;
+    }
+
+    a:hover
+    {
+        text-decoration:underline;
+    }
+
+    ul {
+        margin-left:16px;
+
+        li {
+            padding-bottom:8px;
+        }
+    }
+
+    label {
+        font-weight:bold;
+        text-decoration:none;
+        margin-bottom:8px;
+    }
+}
+
+    

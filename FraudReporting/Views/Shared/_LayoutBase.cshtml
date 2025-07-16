@@ -1,0 +1,38 @@
+﻿@inject IHttpContextAccessor httpContextAccessor
+@inject SessionService sessionService
+@{
+    //Ensure a value is always saved in the user's session - otherwise their ID would change for every request
+    sessionService.SaveSessionId();
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    @* Base website settings *@
+    <title>@ApfSettings.Website.Title - @ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta charset="utf-8" /> @* Needed to display Chinese characters & other extended character sets *@
+    <meta name="viewport" content="width=device-width" /> @* Standard scaling meta-viewport tag for mobile phones. Set the width and DPI to the phone's settings for responsive design *@
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> @* Prevent Internet Explorer from running this site in compatiblity mode if hosted within Intranet *@
+    <meta name="robots" content="noindex, nofollow" />
+
+    @* CSS *@
+    <link href="~/css/vendor.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
+    @RenderSection("AdditionalStyles", false) @* Render any additional styles inside of a view *@
+
+    @* Javascript *@
+    <script>const GLOBALROOTURL = '@Url.Action("", "", null, httpContextAccessor.HttpContext.Request.Scheme)'</script> @* Get the base URL from server-side code so scripts can use fully-qualified URLs *@
+    <script src="~/js/vendor.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
+    @RenderSection("AdditionalScripts", false) @* Render any additional javascript inside of a view into the header *@
+
+</head>
+
+<body class="@ViewHelper.GetCssClassBody(ViewContext)">
+    <div class="siteWrapper">
+        @RenderBody()
+    </div>
+    @RenderSection("AdditionalScriptsBodyEnd", false) @* Render any additional javascript inside of a view at the end of the body *@
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿#{$classSiteWrapper} .PartialBody {
+    background-color: $body-bg-color;
+    color: $body-text-color;
+
+    .content {
+        background-color: $body-bg-color;
+
+        @media screen and (min-width: map-get($grid-breakpoint, xs)) {
+            padding: 0;
+        }
+
+        @media screen and (min-width: map-get($grid-breakpoint, md)) {
+            padding: 2rem;
+        }
+    }
+}

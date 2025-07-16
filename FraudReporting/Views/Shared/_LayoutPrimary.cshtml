@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+    string currentController = this.ViewContext.RouteData.Values["controller"].ToString();
+    string currentAction = this.ViewContext.RouteData.Values["action"].ToString();
+}
+
+@section AdditionalStyles
+{
+    @RenderSection("AdditionalStyles", false)
+}
+
+@section AdditionalScripts
+{
+    @RenderSection("AdditionalScripts", false)
+}
+
+@section AdditionalScriptsBodyEnd
+{
+    @RenderSection("AdditionalScriptsBodyEnd", false)
+}
+
+
+<partial name="_PartialTestBar" />
+
+<partial name="_PartialNoScript" />
+
+<partial name="_PartialCookiesDisabled" />
+
+<partial name="_PartialNavbar" />
+
+<div class="PartialBody"><div class="content">@RenderBody()</div></div>
+
+@* <partial name="_PartialFooter" /> *@

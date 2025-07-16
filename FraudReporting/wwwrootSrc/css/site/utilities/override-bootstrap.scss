@@ -1,0 +1,26 @@
+﻿//Don't want to display an underline under the brand link - especially if an image is included
+.navbar a.navbar-brand:hover {
+    text-decoration:none;
+}
+
+//Don't add any underline styles to links styled as buttons in the base-styles.scss
+a.btn {
+    text-decoration:none;
+
+    &:visited {
+        text-decoration:none;
+    }
+
+    &:hover {
+        text-decoration:none;
+    }
+
+    &:active {
+        text-decoration:none;
+    }
+}
+
+.container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}

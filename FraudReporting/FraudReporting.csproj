@@ -1,0 +1,98 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Configurations>Local;Production;Development;Staging</Configurations>
+
+    <!-- 2020-10-02 - Per email discussion with Keith/Tony on confirmed that by default all applications at APF should default to 'OutOfProcess', only using 'InProcess' in special cases (which requires the application to have its own App Pool set up on dev/stage/live)  -->
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+
+    <!-- Prevent compilation of views on deploy. Compiling will sometimes result in views missing when being deployed - meaning it'll work locally and fail remotely - see here: https://forums.asp.net/t/2138136.aspx?While+Publish+Not+Creating+Views+folder+in+Asp+net+core-->
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+    <UserSecretsId>3c91de47-fe4c-4ef2-a615-23b0857b4c7a</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\uploads\.gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Filters\RequiredFileUploadAttribute.cs~RF1999da2.TMP" />
+    <None Remove="Views\Home\Index.cshtml~RF47847bfc.TMP" />
+    <None Remove="wwwrootSrc\css\site\site.scss~RF1ee8bd2.TMP" />
+  </ItemGroup>
+
+  
+  <!-- Note: Make sure no views are accidentally marked to be removed here or they won't get deployed - https://stackoverflow.com/questions/39396066/view-not-found-after-publish-to-azure/39443592 -->
+
+
+  <ItemGroup>
+    <PackageReference Include="Apfco" Version="1.0.0" />
+    <PackageReference Include="Apfco.Email.API" Version="2.1.0" />
+    <PackageReference Include="Apfco.Validation" Version="1.0.0" />
+    <PackageReference Include="Apfco.Web" Version="1.0.0" />
+    <PackageReference Include="Apfco.Web.Validation" Version="1.0.0" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.3" />
+    <PackageReference Include="System.ServiceModel.Http" Version="8.0.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\_ViewImports.cshtml" />
+    <None Include="Views\Notification\ComingSoon.cshtml" />
+    <None Include="Views\Notification\Error.cshtml" />
+    <None Include="Views\Notification\ProgramEnded.cshtml" />
+    <None Include="Views\Notification\UnderConstruction.cshtml" />
+    <None Include="Views\Notification\_ViewImports.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\Boolean.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\CreditCard.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\IFormFile.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\Int32.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\Phone.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\TextArea.cshtml" />
+    <None Include="Views\Shared\_LayoutBase.cshtml" />
+    <None Include="Views\Shared\_LayoutPrimary.cshtml" />
+    <None Include="Views\Shared\_PartialCookiesDisabled.cshtml" />
+    <None Include="Views\Shared\_PartialNavbar.cshtml" />
+    <None Include="Views\Shared\_PartialNoScript.cshtml" />
+    <None Include="Views\Shared\_PartialTestBar.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\documents\_publish.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\uploads\_publish.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DAL\" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="REM rmdir /S /Q &quot;$(ProjectDir)\obj&quot;" />
+  </Target>
+
+</Project>

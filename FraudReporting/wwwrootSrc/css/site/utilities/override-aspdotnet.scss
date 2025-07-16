@@ -1,0 +1,39 @@
+﻿//ASP.Net MVC - styles for validation helpers
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error, select.input-validation-error, textarea.input-validation-error, label.input-validation-error  {
+    border: 1px solid #f0687a !important;
+    color:#f0687a !important;
+    background-color:#fbd3db !important;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+
+    ul {
+        margin-left:16px;
+
+        li {
+            margin-bottom:4px;
+
+            &:last-child {
+                margin-bottom:0px;
+            }
+        }
+    }
+}
+
+.validation-summary-valid {
+    display: none;
+}
+    

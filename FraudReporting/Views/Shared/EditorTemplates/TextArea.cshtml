@@ -1,0 +1,31 @@
+﻿@model string
+@{
+    var htmlAttributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(ViewData["htmlAttributes"]);
+    htmlAttributes.Add("onchange", "this.setAttribute('value', this.value);");
+    htmlAttributes.Add("onkeyup", "this.setAttribute('value', this.value);");
+    htmlAttributes.Add("value", Html.ValueForModel());
+    htmlAttributes.Add("aria_describedby", Html.IdForModel() + "Error");
+
+    List<SelectListItem> dropdownlist = ViewBag.dropdownlist;
+}
+
+<div class="input-group-no-flex">
+    <div class="input-container">
+        @Html.TextAreaFor(x => x, htmlAttributes)
+        <label for="@Html.IdForModel()">@Html.DisplayNameForModel() @if (htmlAttributes.Where(x => x.Key.ToUpper() == "REQUIRED").Count() > 0) {<span class="req">*</span>}</label>
+    </div>
+    <div class="hint"><span id="@Html.IdForModel()-Count"></span> characters remaining</div>
+    <script>
+        @{
+            var modelName = Html.IdForModel();
+        }
+            $(document).ready(function () {
+                let maxLength = $("#@modelName").attr("data-val-length-max");
+                $("#@modelName").attr('maxlength', maxLength.toString());
+                $('#@modelName-Count').html((maxLength - ($('#@modelName').val()).length).toString());
+                $('#@modelName').keyup(function () { $('#@modelName-Count').html((maxLength - ($('#@modelName').val()).length).toString()); });
+            });
+    </script>
+</div>
+
+@Html.ValidationMessageFor(x => x, "", new { id = Html.IdForModel() + "Error" })

@@ -1,0 +1,73 @@
+﻿//Import other SASS files
+@import "utilities/breakpoints"; //Screen size breakpoints
+@import "utilities/mixins"; //Mixins - import first as may be used in other includes
+@import "utilities/fonts"; //Additional custom fonts
+
+//Website page colors
+$navbar-bg-color: #212c33;
+$navbar-text-color: white;
+$footer-bg-color: #808080;
+$footer-text-color: white;
+$body-bg-color: #e8e5df;
+$body-text-color: black;
+$content-bg-color: white;
+$content-text-color: black;
+
+//Core HTML elements
+html {
+
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: $body-bg-color;
+
+    .content {
+        @include responsive-width(1200px);
+    }
+
+    .display-mobile {
+        @media screen and (min-width: map-get($grid-breakpoint, xs)) {
+            display: initial;
+        }
+
+        @media screen and (min-width: map-get($grid-breakpoint, md)) {
+            display: none;
+        }
+    }
+
+    .display-desktop {
+        @media screen and (min-width: map-get($grid-breakpoint, xs)) {
+            display: none;
+        }
+
+        @media screen and (min-width: map-get($grid-breakpoint, md)) {
+            display: initial;
+        }
+    }
+
+    img {
+        height: auto;
+        width: 100%;
+        pointer-events: none;
+    }
+}
+
+//Prefix all base element styles within here to avoid messing up libraries or client-provided HTML/CSS blocks (header/footer from their site, etc.)
+$classSiteWrapper: ".siteWrapper";
+$classViewWrapper: ".viewWrapper";
+#{$classSiteWrapper} {
+    @import "utilities/override-aspdotnet"; //Additional ASP.Net overrides
+    @import "utilities/override-bootstrap"; //Additional bootstrap overrides
+    @import "utilities/base-styles";
+    @import "utilities/utilities";
+    @import "utilities/breakpoints";
+}
+
+#{$classViewWrapper} {
+    padding: 2rem;
+}
+
+//View-specific styles - has reference to $classSiteWrapper and $classViewWrapper inside each
+@import "views/**/*.scss";

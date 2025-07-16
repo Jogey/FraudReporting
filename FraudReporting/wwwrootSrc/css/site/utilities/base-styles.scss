@@ -1,0 +1,164 @@
+﻿//Base Link Styles
+a {
+    text-decoration:none;
+
+    &:visited {
+        text-decoration:none;
+    }
+
+    &:hover {
+        text-decoration:underline;
+    }
+
+    &:active {
+    
+    }
+}
+
+
+//Base header styles 
+h1 {
+    
+}
+
+h2 {
+    
+}
+
+h3 {
+    
+}
+
+h4 {
+    
+}
+
+h5 {
+    
+}
+
+
+//Other Base element styles
+hr {
+    border-top:1px solid #000;
+    border-bottom:none;
+    border-left:none;
+    border-right:none;
+    margin-top:12px;
+    margin-bottom:12px;
+}
+
+p {
+    
+}
+
+ul {
+    padding:0px;
+    margin:0px;
+
+    > li {
+        text-align:left;
+        padding:0px;
+        margin:0px;
+    }
+}
+
+label {
+
+}
+
+
+//Base website form input styles - also includes HTML5 input types
+%inputTextboxTypeTemplate { //SCSS placeholder style for all "textbox" type inputs, including <select> and <textarea>. Common things like borders, font, background color, etc. should be put here
+    //width:100%; 
+    //border-radius:0px;
+}
+    
+  input[type="text"]
+, input[type="password"]
+, input[type="color"]
+, input[type="date"]
+, input[type="datetime"]
+, input[type="datetime-local"]
+, input[type="email"]
+, input[type="month"]
+, input[type="number"]
+, input[type="search"]
+, input[type="tel"]
+, input[type="time"]
+, input[type="url"]
+, input[type="week"]{
+    @extend %inputTextboxTypeTemplate;
+}
+    
+//Remove the spinner on 'number' HTML5 inputs in chrome/firefox
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+    //display: none; <- Crashes Chrome on hover
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0; //Apparently some margin are still there even though it's hidden
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+select {
+    @extend %inputTextboxTypeTemplate;
+}
+
+textarea {
+    @extend %inputTextboxTypeTemplate;
+    min-height:96px;
+}
+
+input[type="file"]{
+    //width:100%; /* Default file inputs can cause problems on mobile, pushing outside of all wrapping tags and creating an empty space on the right - adding this to prevent this*/
+}
+
+input[type="range"]{
+    //width:100%; 
+}
+
+
+//Input Buttons
+@mixin button-type-base { //SCSS placeholder style for all buttons
+    margin-right:8px;
+    vertical-align:top;
+
+    * {
+        vertical-align:top;
+    }
+
+    &:last-child {
+        margin-right:0px;
+    }
+
+
+    @media screen and (min-width: map-get($grid-breakpoint, xs)) {
+        margin-right:8px;
+        margin-bottom:8px;
+
+        &:last-child {
+            margin-right:0px;
+            margin-bottom:0px;
+        }
+    }
+
+    @media screen and (min-width: map-get($grid-breakpoint, md)) {
+        margin-right:initial;
+        margin-bottom:initial;
+
+        &:last-child {
+            margin-right:initial;
+            margin-bottom:initial;
+        }
+    }
+}
+
+ a.buttonLink
+,button.buttonLink
+,input[type="button"]
+,input[type="submit"]{  /* Note: use the class .buttonLink on <button> elements when making back buttons. This is because other javascript libraries may generate <button> elements and you don't want to mess up those styles */
+    @include button-type-base();
+}

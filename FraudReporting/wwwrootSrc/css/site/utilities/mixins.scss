@@ -1,0 +1,80 @@
+﻿//Max website width - used by mixins
+$site-max-width:1200px;
+
+
+//Base mixins
+@mixin responsive-width($max-width: $site-max-width) { //Mixin for a typical responsive page width with a max size, with a default max-width
+    max-width:$max-width;
+    width:100%;
+    margin:0 auto;
+}
+
+
+//Scalable fixed layout utility functions. Values will be set to the $maxSize when the display width is greater than or equal 
+//to $site-max-width, and when below that will switch to using view units instead.
+@function get-vw($maxSize) { 
+    @return ($maxSize/$site-max-width) * 100 * 1vw;
+}
+
+@mixin font-size-vw($maxSize) {
+    font-size:$maxSize;
+    @media screen and (max-width: $site-max-width) {
+        font-size:get-vw($maxSize);
+    }
+}
+
+@mixin line-height-vw($maxSize) {
+    line-height:$maxSize;
+    @media screen and (max-width: $site-max-width) {
+        line-height:get-vw($maxSize);
+    }
+}
+
+@mixin width-size-vw($maxSize) {
+    width:$maxSize;
+    @media screen and (max-width: $site-max-width) {
+        width:get-vw($maxSize);
+    }
+}
+
+@mixin top-size-vw($maxSize) {
+    top:$maxSize;
+    @media screen and (max-width: $site-max-width) {
+        top:get-vw($maxSize);
+    }
+}
+
+@mixin left-size-vw($maxSize) {
+    left:$maxSize;
+    @media screen and (max-width: $site-max-width) {
+        left:get-vw($maxSize);
+    }
+}
+
+@mixin right-size-vw($maxSize) {
+    right:$maxSize;
+    @media screen and (max-width: $site-max-width) {
+        right:get-vw($maxSize);
+    }
+}
+
+@mixin bottom-size-vw($maxSize) {
+    bottom:$maxSize;
+    @media screen and (max-width: $site-max-width) {
+        bottom:get-vw($maxSize);
+    }
+}
+
+@mixin margin-top-size-vw($maxSize) {
+    margin-top:$maxSize;
+    @media screen and (max-width: $site-max-width) {
+        margin-top:get-vw($maxSize);
+    }
+}
+
+@mixin margin-bottom-size-vw($maxSize) {
+    margin-bottom:$maxSize;
+    @media screen and (max-width: $site-max-width) {
+        margin-bottom:get-vw($maxSize);
+    }
+}

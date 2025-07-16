@@ -1,0 +1,44 @@
+body.cHome.aResult {
+    #{$classSiteWrapper} #{$classViewWrapper} {
+    }
+
+    .PartialBody {
+        .input-result-label {
+            color: #696969;
+            font-size: 0.9rem;
+
+            span {
+                color: black;
+                font-size: 1rem;
+            }
+        }
+
+        .chart {
+            width: 100%;
+            height: 300px;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border: 1px solid black;
+
+            th, td {
+                padding: 8px;
+            }
+
+            .row-header, .row-end {
+                border-bottom: 1px solid grey;
+            }
+
+            .row-detail {
+                font-size: 0.9rem;
+
+                th, td {
+                    padding-left: 1rem;
+                    padding-bottom: 1rem;
+                }
+            }
+        }
+    }
+}

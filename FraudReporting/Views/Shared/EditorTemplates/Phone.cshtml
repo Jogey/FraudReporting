@@ -1,0 +1,39 @@
+﻿@model string
+@{
+    var htmlAttributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(ViewData["htmlAttributes"]);
+    htmlAttributes.Add("onchange", "this.setAttribute('value', this.value);");
+    htmlAttributes.Add("value", Html.ValueForModel());
+    htmlAttributes.Add("aria_describedby", Html.IdForModel() + "Error");
+    htmlAttributes.Add("type", "tel");
+
+    List<SelectListItem> dropdownlist = ViewBag.dropdownlist;
+    string prepend = ViewBag.prepend;
+}
+
+<div class="input-group">
+    @if (!String.IsNullOrEmpty(prepend))
+    {
+        <div class="input-group-prepend">
+            <span class="input-group-text">@prepend</span>
+        </div>
+    }
+    <div class="input-container">
+        @{
+            if (dropdownlist != null)
+            {
+                <div class="select-wrapper">
+                    @Html.DropDownListFor(x => x, dropdownlist, htmlAttributes)
+                    <label for="@Html.IdForModel()">@Html.DisplayNameForModel() @if (htmlAttributes.Where(x => x.Key.ToUpper() == "REQUIRED").Count() > 0) {<span class="req">*</span>}</label>
+                </div>
+            }
+            else
+            {
+                htmlAttributes.Add("onkeyup", "this.setAttribute('value', this.value);");
+                @Html.TextBoxFor(x => x, htmlAttributes)
+                <label for="@Html.IdForModel()">@Html.DisplayNameForModel() @if (htmlAttributes.Where(x => x.Key.ToUpper() == "REQUIRED").Count() > 0) {<span class="req">*</span>}</label>
+            }
+        }
+    </div>
+</div>
+
+@Html.ValidationMessageFor(x => x, "", new { id = Html.IdForModel() + "Error" })

@@ -1,0 +1,31 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+
+<div class="@ViewHelper.GetCssClassViewWrapper()">
+
+    <p>
+        We're Sorry! An error occurred when we tried to processing your request. If this problem
+        persists, please contact @Model.CustomerServiceEmails with your issue.
+    </p>
+    <p>
+        When contacting us, please supply the following information with the email to assist with the issue you encountered:
+    </p>
+    <p>
+        <strong>
+            @string.Format(
+                "{0}-{1}-{2}",
+                Model.Promo,
+                Model.IPAddress,
+                Model.SessionId
+            )
+        </strong>
+    </p>
+    <p>
+        We apologize for the inconvenience.
+    </p>
+    <a href="@Url.Action("","")">Click here to return to the home page</a>
+
+</div>

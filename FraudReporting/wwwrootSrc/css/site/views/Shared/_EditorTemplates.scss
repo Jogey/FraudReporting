@@ -1,0 +1,292 @@
+.input-group-text {
+    min-height: 50px;
+}
+
+.input-container {
+    position: relative;
+    flex: 1;
+    //margin-bottom: 12px;
+
+    input {
+        min-height: 50px;
+    }
+
+    select {
+        min-height: 50px;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    textarea {
+        min-height: 144px;
+    }
+
+    label {
+        position: absolute;
+        z-index: 10;
+        pointer-events: none;
+        padding: 12px;
+        transition: 0.2s ease all;
+        color: #696969;
+    }
+
+    input + label, select + label {
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    textarea + label {
+        left: 0;
+        top: 0;
+    }
+
+    & input:focus ~ label,
+    & input:not([value='']) ~ label {
+        top: 12px;
+        font-size: 10px;
+    }
+
+    & input:focus,
+    & input:not([value='']) {
+        padding-top: 18px;
+    }
+
+    & input:focus ~ label {
+        color: #000000;
+    }
+
+    & input.input-validation-error:focus ~ label,
+    & input.input-validation-error:not([value='']) ~ label {
+        color: #f0687a !important;
+    }
+
+    & input::-webkit-datetime-edit,
+    & input[type="date"] {
+        color: transparent;
+    }
+
+    & input:focus::-webkit-datetime-edit,
+    & input[type="date"]:focus {
+        color: #696969 !important;
+    }
+
+    & input:not([value=''])::-webkit-datetime-edit,
+    & input[type="date"]:not([value='']) {
+        color: #000000;
+    }
+
+    select,
+    select option {
+        color: #000000;
+    }
+
+    select:invalid,
+    select option:disabled,
+    select option[value=""] {
+        color: #999999;
+    }
+
+    .select-wrapper {
+        position: relative;
+    }
+
+    .select-wrapper::after {
+        //content: url("../images/chevron-down.svg");
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+    }
+
+    & select:focus ~ label,
+    & select:not([value='']) ~ label {
+        top: 12px;
+        font-size: 10px;
+    }
+
+    & select:focus,
+    & select:not([value='']) {
+        padding-top: 18px;
+    }
+
+    & select:focus ~ label {
+        color: #000000;
+    }
+
+    & select.input-validation-error:focus ~ label,
+    & select.input-validation-error:not([value='']) ~ labell {
+        color: #f0687a !important;
+    }
+
+    & textarea:focus ~ label,
+    & textarea:not([value='']) ~ label {
+        top: 12px;
+        transform: translateY(-50%);
+        font-size: 10px;
+    }
+
+    & textarea:focus,
+    & textarea:not([value='']) {
+        padding-top: 18px;
+    }
+
+    & textarea:focus ~ label {
+        color: #000000;
+    }
+
+    & textarea.input-validation-error:focus ~ label,
+    & textarea.input-validation-error:not([value='']) ~ label {
+        color: #f0687a !important;
+    }
+}
+
+.customfile {
+    position: relative;
+    flex: 1;
+    margin-top: 6px;
+    width: 100%;
+    max-width: 800px;
+
+    input {
+        position: absolute;
+        bottom: 0;
+        border: none;
+        height: 1px;
+        width: 1px;
+        padding: 0px;
+        margin: 0px;
+
+        &:disabled + .customfile-button {
+            cursor: default !important;
+            border-color: #ececec !important;
+            background: #ececec !important;
+            color: #b4b4b4 !important;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &::file-selector-button {
+            visibility: hidden;
+        }
+    }
+
+    .customfile-button-container {
+        position: relative;
+        height: auto;
+
+        .customfile-button {
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            background: white;
+            padding: 8px 14px;
+            margin-bottom: 0;
+            color: #000;
+
+            &:hover {
+                border-color: #adadad;
+                background: #e6e6e6;
+                cursor: pointer;
+            }
+        }
+
+        input:focus + .customfile-button {
+            border-color: #80bdff;
+            outline: 3px solid #bfdeff;
+            background: #e6e6e6;
+        }
+
+        .req {
+            position: absolute;
+            top: 0;
+            margin-left: 6px;
+        }
+    }
+
+    .table {
+        width: 100%;
+        border: 1px solid #ced4da;
+        margin-top: 10px;
+
+        thead {
+            background: #e9ecef;
+            color: #495057;
+
+            th {
+                font-weight: normal;
+                padding: 0.5rem;
+                border-top: none;
+                border-bottom: none;
+            }
+        }
+
+        tbody {
+            background: white;
+
+            tr th, tr td {
+                vertical-align: middle;
+            }
+
+            tr td:last-child {
+                text-align: right;
+            }
+
+            .customfile-filename {
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            button {
+                outline: none;
+                border: 1px solid #ced4da;
+                border-radius: 0.25rem;
+                text-align: center;
+                padding: 0;
+                height: 40px;
+                width: 40px;
+            }
+
+            .customfile-action {
+                &:hover {
+                    background: #FFF;
+                }
+
+                &:focus {
+                    border-color: #80bdff;
+                    outline: 3px solid #bfdeff;
+                    background: #FFF;
+                }
+            }
+
+
+            .customfile-action-none {
+                border: none !important;
+            }
+        }
+    }
+
+    .progress-container {
+        margin: 5px 0;
+        background-color: #e6e6e6;
+
+        .progress-bar {
+            height: 10px;
+            width: 0%;
+        }
+    }
+
+    .progress {
+        background-color: #727272;
+    }
+}
+
+.hint {
+    color: #696969;
+    font-size: small;
+    margin-left: 4px;
+}

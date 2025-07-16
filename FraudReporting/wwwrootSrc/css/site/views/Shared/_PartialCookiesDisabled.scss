@@ -1,0 +1,29 @@
+﻿#{$classSiteWrapper} .PartialCookiesDisabled {
+    background-color:#FFF; 
+    color:#000; 
+    font-size:16px; 
+    font-weight:normal; 
+    padding:32px;
+
+    a {
+        color:#000; 
+        text-decoration:underline;
+
+        &:visited {
+            color:#000; 
+            text-decoration:underline;
+        }
+
+        &:hover {
+            color:#000; 
+            text-decoration:underline;
+        }
+
+        &:active {
+            color:#000; 
+            text-decoration:underline;
+        }
+    }
+}
+
+    

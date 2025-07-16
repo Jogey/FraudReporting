@@ -1,0 +1,85 @@
+﻿@model ResultViewModel
+@inject IPathService pathService
+@{
+    ViewData["Title"] = "Results";
+}
+
+
+<div class="@ViewHelper.GetCssClassViewWrapper()">
+    <h1>Summary</h1>
+    <br />
+    <div class="container">
+        <a class="btn btn-primary mb-3" role="button" href="@pathService.GetActionUrl(nameof(HomeController.Index), HomeController.NameOf)">Back</a>
+    </div>
+
+    <p><b>Time Elapsed:</b> @Model.Report.TimeElasped</p>
+    <div class="container">
+        <div class="form-control mb-3">
+            <h6>Parameters</h6>
+            <hr />
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="input-result-label form-label">Scope: <span>@Model.Report.Scope</span></label>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="input-result-label form-label">Confidence: <span>@Model.Report.ConfidenceThreshold</span></label>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="input-result-label form-label">Dupe Limit: <span>@Model.Report.CountThreshold</span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="input-result-label form-label">Similar IP Addresses: <span>@Model.Report.FraudScoringIPAddress</span></label>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="input-result-label form-label">Similar Physical Addresses: <span>@Model.Report.FraudScoringAddress</span></label>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="input-result-label form-label">Non-Zip4: <span>@Model.Report.FraudScoringZip4</span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="input-result-label form-label">Email-to-Name Unlikeness: <span>@Model.Report.FraudScoringEmail</span></label>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="input-result-label form-label">Uncommon Email Provider: <span>@Model.Report.FraudScoringEmailProvider</span></label>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="input-result-label form-label">Invalid Area Code: <span>@Model.Report.FraudScoringPhoneNumber</span></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (!string.IsNullOrEmpty(Model.Report.RecordsListFilename)) { <p><a href="~/documents/@(Model.Report.RecordsListFilename + ".xlsx")" download="@Model.Report.RecordsListFilename"><i class="fa fa-download"></i>  Download List of Suspected Fraud Records</a></p> }
+    <table>
+        @foreach (var item in Model.Report.Items)
+        {
+            <tr class="row-header">
+                <th>Scope</th>
+                <th>Percentage Fraud</th>
+                <th>Total Records</th>
+                <th>Total Suspected Fraud</th>
+            </tr>
+            <tr class="row-main">
+                <td>@(item.Scope == "BATCH-ZERO" ? "BATCH-0" : item.Scope)</td>
+                <td>@(item.PercentageFraud)%</td>
+                <td>@item.TotalRecords</td>
+                <td>@item.TotalFraudCount</td>
+            </tr>
+            <tr class="row-detail">
+                <td colspan="5">
+                    <b>Suspected IP Address:</b> @item.SuspectedIPAddressCount<br />
+                    <b>Suspected Address:</b> @item.SuspectedAddressCount<br />
+                    <b>Suspected Zip4:</b> @item.SuspectedZip4Count<br />
+                    <b>Suspected Email:</b> @item.SuspectedEmailCount<br />
+                    <b>Suspected Email Provider:</b> @item.SuspectedEmailProviderCount<br />
+                    <b>Suspected Phone:</b> @item.SuspectedPhoneNumberCount<br />
+                    <b>Correlation Fraud:</b> @item.SuspectedCorrelationCount
+                </td>
+            </tr>
+            <tr class="row-end"></tr>
+        }
+    </table>
+</div>

@@ -1,0 +1,16 @@
+﻿body.cHome.aIndex {
+    #{$classSiteWrapper} #{$classViewWrapper} {
+    }
+
+    .PartialBody {
+        .input-range-label {
+            color: #696969;
+            font-size: 0.9rem;
+
+            span {
+                color: black;
+                font-size: 1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,71 @@
+﻿@model IFormFile
+@inject IPathService pathService
+@inject SessionService sessionService
+@{
+    var htmlAttributes = (IDictionary<string, object>)HtmlHelper.AnonymousObjectToHtmlAttributes(ViewData["htmlAttributes"]);
+    htmlAttributes.Add("aria_describedby", Html.IdForModel() + "Error");
+    htmlAttributes.Add("type", "file");
+    htmlAttributes.Add("style", "height:1px;width:1px;border:none;");
+
+    string filetype = (ViewBag.filetype != null) ? ViewBag.filetype : Html.IdForModel();
+    htmlAttributes.Add("filetype", filetype);
+    string maximum = (ViewBag.maximum != null) ? ViewBag.maximum : "1";
+    htmlAttributes.Add("maximum", maximum);
+}
+
+
+<div class="input-group">
+    <div class="customfile">
+        <div class="customfile-button-container">
+            @Html.TextBoxFor(x => x, htmlAttributes)
+            <label class="customfile-button button-action" for="@Html.IdForModel()">
+                <span id="@(Html.IdForModel() + "Text")"><i class="fa fa-file-upload" style="margin-right:4px;"></i> Upload Records Spreadsheet</span>
+            </label>
+            @if (htmlAttributes.Where(x => x.Key.ToUpper() == "REQUIRED").Count() > 0) { <span class="req">*</span> }
+        </div>
+        <div class="hint">Format must be CSV, XLS, or XLSX. Limited to (@maximum) total file uploads.</div>
+        <div class="progress-container">
+            <div id="@(Html.IdForModel() + "Progress")" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <table class="table table-hover" id="@(Html.IdForModel() + "Table")">
+            <colgroup>
+                <col style="width:10%">
+                <col style="width:80%">
+                <col style="width:10%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th class="head" scope="col"></th>
+                    <th class="head" scope="col"></th>
+                    <th class="head" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    List<FileUpload> ReceiptImages = sessionService.sessionData.FileUploads.ToList();
+                }
+                @if (ReceiptImages.Count() > 0)
+                {
+                    for (int i = 0; i < ReceiptImages.Count(); i++)
+                    {
+                        <tr class="table-row table-item">
+                            <th scope="row">@(i + 1)</th>
+                            <td class="customfile-filename">@ReceiptImages[i].DisplayName</td>
+                            <td><button type="button" class="customfile-action" id="@ReceiptImages[i].UniqueId"><i class="fa fa-trash-alt"></i></button></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr class="table-row">
+                        <th scope="row"></th>
+                        <td></td>
+                        <td><button type="button" class="customfile-action-none" disabled><i class="fa fa-trash-alt"></i></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.ValidationMessageFor(x => x, "", new { id = Html.IdForModel() + "Error" })

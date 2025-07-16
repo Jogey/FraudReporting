@@ -1,0 +1,43 @@
+﻿@inject IHttpContextAccessor httpContextAccessor
+@inject IPathService pathService
+@{
+    Layout = null;
+}
+@* If running in test mode, display the notification banner *@
+@if (ApfSettings.IsDebugBuild)
+{
+    <div class="PartialTestBar collapse show" id="PartialTestBar">
+        <div class="testHeader">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        Arrowhead Internal Testing
+                    </div>
+                    <div class="col-12 col-md-6 text-md-end">
+                        <a class="testModeButtonToggleView" data-bs-toggle="collapse" href="#PartialTestBarBody" role="button" aria-expanded="false" aria-controls="PartialTestBarBody">
+                            View Info
+                        </a>
+                        &nbsp;-&nbsp;
+                        <a class="testModeButtonToggleView" data-bs-toggle="collapse" href="#PartialTestBar" role="button" aria-expanded="true" aria-controls="PartialTestBarBody">
+                            Hide Bar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collapse testBody" id="PartialTestBarBody">
+            <div class="container d-inline-block">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <label>User Info</label>
+                        <ul>
+                            <li>IP Address: @httpContextAccessor.HttpContext?.Connection?.RemoteIpAddress</li>
+                            <li>User Agent: @httpContextAccessor.HttpContext?.Request?.Headers["User-Agent"]</li>
+                            <li>Session ID: @httpContextAccessor.HttpContext?.Session?.Id</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

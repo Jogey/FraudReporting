@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+    var BrandURL = "https://arrowheadpromotion.com/";
+    string currentController = this.ViewContext.RouteData.Values["controller"].ToString();
+    string currentAction = this.ViewContext.RouteData.Values["action"].ToString();
+}
+
+<nav class="PartialNavbar">
+    <div class="navbar-container">
+        <div class="navbar-left">
+            <div class="navbar-section-container">
+                <a class="navbar-brand navbar-logo-link" href="@BrandURL" target="_blank"><img src="~/images/logoArrowhead.svg" alt="Navigation Bar Logo" class="navbar-logo" asp-append-version="true"></a>
+                <div>@ApfSettings.Website.Title</div>
+            </div>
+        </div>
+        <div class="navbar-right"></div>
+    </div>
+</nav>

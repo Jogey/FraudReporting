@@ -1,0 +1,724 @@
+@charset "UTF-8";
+/*@font-face {
+    font-family: "Example Font";
+    src: url("../fonts/ExampleFont.eot?#iefix");
+    src: url("../fonts/ExampleFont.eot?#iefix") format("eot")
+    , url("../fonts/ExampleFont.woff") format("woff")
+    , url("../fonts/ExampleFont.ttf") format("truetype")
+    , url("../fonts/ExampleFont.svg") format("svg"); 
+}
+*/
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #e8e5df;
+}
+body .content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 0) {
+  body .display-mobile {
+    display: initial;
+  }
+}
+@media screen and (min-width: 768px) {
+  body .display-mobile {
+    display: none;
+  }
+}
+@media screen and (min-width: 0) {
+  body .display-desktop {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  body .display-desktop {
+    display: initial;
+  }
+}
+body img {
+  height: auto;
+  width: 100%;
+  pointer-events: none;
+}
+
+.siteWrapper .field-validation-error {
+  color: #b94a48;
+}
+.siteWrapper .field-validation-valid {
+  display: none;
+}
+.siteWrapper input.input-validation-error, .siteWrapper select.input-validation-error, .siteWrapper textarea.input-validation-error, .siteWrapper label.input-validation-error {
+  border: 1px solid #f0687a !important;
+  color: #f0687a !important;
+  background-color: #fbd3db !important;
+}
+.siteWrapper input[type=checkbox].input-validation-error {
+  border: 0 none;
+}
+.siteWrapper .validation-summary-errors {
+  color: #b94a48;
+}
+.siteWrapper .validation-summary-errors ul {
+  margin-left: 16px;
+}
+.siteWrapper .validation-summary-errors ul li {
+  margin-bottom: 4px;
+}
+.siteWrapper .validation-summary-errors ul li:last-child {
+  margin-bottom: 0px;
+}
+.siteWrapper .validation-summary-valid {
+  display: none;
+}
+.siteWrapper .navbar a.navbar-brand:hover {
+  text-decoration: none;
+}
+.siteWrapper a.btn {
+  text-decoration: none;
+}
+.siteWrapper a.btn:visited {
+  text-decoration: none;
+}
+.siteWrapper a.btn:hover {
+  text-decoration: none;
+}
+.siteWrapper a.btn:active {
+  text-decoration: none;
+}
+.siteWrapper .container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.siteWrapper a {
+  text-decoration: none;
+}
+.siteWrapper a:visited {
+  text-decoration: none;
+}
+.siteWrapper a:hover {
+  text-decoration: underline;
+}
+.siteWrapper hr {
+  border-top: 1px solid #000;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.siteWrapper ul {
+  padding: 0px;
+  margin: 0px;
+}
+.siteWrapper ul > li {
+  text-align: left;
+  padding: 0px;
+  margin: 0px;
+}
+.siteWrapper input::-webkit-outer-spin-button, .siteWrapper input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
+}
+.siteWrapper input[type=number] {
+  -moz-appearance: textfield;
+}
+.siteWrapper textarea {
+  min-height: 96px;
+}
+.siteWrapper a.buttonLink,
+.siteWrapper button.buttonLink,
+.siteWrapper input[type=button],
+.siteWrapper input[type=submit] {
+  /* Note: use the class .buttonLink on <button> elements when making back buttons. This is because other javascript libraries may generate <button> elements and you don't want to mess up those styles */
+  margin-right: 8px;
+  vertical-align: top;
+}
+.siteWrapper a.buttonLink *,
+.siteWrapper button.buttonLink *,
+.siteWrapper input[type=button] *,
+.siteWrapper input[type=submit] * {
+  vertical-align: top;
+}
+.siteWrapper a.buttonLink:last-child,
+.siteWrapper button.buttonLink:last-child,
+.siteWrapper input[type=button]:last-child,
+.siteWrapper input[type=submit]:last-child {
+  margin-right: 0px;
+}
+@media screen and (min-width: 0) {
+  .siteWrapper a.buttonLink,
+.siteWrapper button.buttonLink,
+.siteWrapper input[type=button],
+.siteWrapper input[type=submit] {
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+  .siteWrapper a.buttonLink:last-child,
+.siteWrapper button.buttonLink:last-child,
+.siteWrapper input[type=button]:last-child,
+.siteWrapper input[type=submit]:last-child {
+    margin-right: 0px;
+    margin-bottom: 0px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .siteWrapper a.buttonLink,
+.siteWrapper button.buttonLink,
+.siteWrapper input[type=button],
+.siteWrapper input[type=submit] {
+    margin-right: initial;
+    margin-bottom: initial;
+  }
+  .siteWrapper a.buttonLink:last-child,
+.siteWrapper button.buttonLink:last-child,
+.siteWrapper input[type=button]:last-child,
+.siteWrapper input[type=submit]:last-child {
+    margin-right: initial;
+    margin-bottom: initial;
+  }
+}
+.siteWrapper .error-modal {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  padding: 0.5rem 1rem;
+  background: #ffd3c9;
+  border: 1px solid #e0383a;
+  border-radius: 6px;
+  color: #333333;
+  text-align: center;
+}
+.siteWrapper .error-modal .error-modal-title {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.siteWrapper .error-modal .error-modal-title .icon {
+  font-size: 1.2rem;
+  color: #e0383a !important;
+  margin-right: 0.4rem;
+}
+.siteWrapper .error-modal .error-modal-verbiage {
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+.siteWrapper .req {
+  color: #ff0000;
+}
+.siteWrapper ul.indented {
+  margin-left: 32px;
+}
+.siteWrapper ul.indented > li {
+  margin-bottom: 12px;
+}
+.siteWrapper ul.indented > li:last-child {
+  margin-bottom: 0px;
+}
+.siteWrapper hr.spacer {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: 8px;
+}
+.siteWrapper hr.spacer2 {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: 16px;
+}
+.siteWrapper hr.spacer3 {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: 24px;
+}
+.siteWrapper hr.spacer4 {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: 32px;
+}
+.siteWrapper hr.inline-spacer {
+  display: inline-block;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: 8px;
+  width: 8px;
+}
+.siteWrapper hr.inline-spacer2 {
+  display: inline-block;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: 8px;
+  width: 16px;
+}
+.siteWrapper hr.inline-spacer3 {
+  display: inline-block;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: 8px;
+  width: 24px;
+}
+.siteWrapper hr.inline-spacer4 {
+  display: inline-block;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  height: 8px;
+  width: 32px;
+}
+.siteWrapper .utilWidth100 {
+  width: 100%;
+}
+.siteWrapper .utilHeight100 {
+  height: 100%;
+}
+.siteWrapper .utilDispInlineBlock {
+  display: inline-block;
+}
+.siteWrapper .utilDispInlineTable {
+  display: inline-table;
+}
+.siteWrapper .utilDispTable {
+  display: table;
+}
+.siteWrapper .utilDispTableRow {
+  display: table-row;
+}
+.siteWrapper .utilDispTableCell {
+  display: table-cell;
+}
+.siteWrapper .utilVertAlignTop {
+  vertical-align: top;
+}
+.siteWrapper .utilVertAlignMiddle {
+  vertical-align: middle;
+}
+.siteWrapper .utilVertAlignBottom {
+  vertical-align: bottom;
+}
+
+.viewWrapper {
+  padding: 2rem;
+}
+
+body.cHome.aIndex .PartialBody .input-range-label {
+  color: #696969;
+  font-size: 0.9rem;
+}
+body.cHome.aIndex .PartialBody .input-range-label span {
+  color: black;
+  font-size: 1rem;
+}
+
+body.cHome.aResult .PartialBody .input-result-label {
+  color: #696969;
+  font-size: 0.9rem;
+}
+body.cHome.aResult .PartialBody .input-result-label span {
+  color: black;
+  font-size: 1rem;
+}
+body.cHome.aResult .PartialBody .chart {
+  width: 100%;
+  height: 300px;
+}
+body.cHome.aResult .PartialBody table {
+  width: 100%;
+  background: white;
+  border: 1px solid black;
+}
+body.cHome.aResult .PartialBody table th, body.cHome.aResult .PartialBody table td {
+  padding: 8px;
+}
+body.cHome.aResult .PartialBody table .row-header, body.cHome.aResult .PartialBody table .row-end {
+  border-bottom: 1px solid grey;
+}
+body.cHome.aResult .PartialBody table .row-detail {
+  font-size: 0.9rem;
+}
+body.cHome.aResult .PartialBody table .row-detail th, body.cHome.aResult .PartialBody table .row-detail td {
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
+
+body.cNotification .PartialBody {
+  text-align: center;
+}
+
+.input-group-text {
+  min-height: 50px;
+}
+
+.input-container {
+  position: relative;
+  flex: 1;
+}
+.input-container input {
+  min-height: 50px;
+}
+.input-container select {
+  min-height: 50px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+}
+.input-container textarea {
+  min-height: 144px;
+}
+.input-container label {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  padding: 12px;
+  transition: 0.2s ease all;
+  color: #696969;
+}
+.input-container input + label, .input-container select + label {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.input-container textarea + label {
+  left: 0;
+  top: 0;
+}
+.input-container input:focus ~ label, .input-container input:not([value=""]) ~ label {
+  top: 12px;
+  font-size: 10px;
+}
+.input-container input:focus, .input-container input:not([value=""]) {
+  padding-top: 18px;
+}
+.input-container input:focus ~ label {
+  color: #000000;
+}
+.input-container input.input-validation-error:focus ~ label, .input-container input.input-validation-error:not([value=""]) ~ label {
+  color: #f0687a !important;
+}
+.input-container input::-webkit-datetime-edit, .input-container input[type=date] {
+  color: transparent;
+}
+.input-container input:focus::-webkit-datetime-edit, .input-container input[type=date]:focus {
+  color: #696969 !important;
+}
+.input-container input:not([value=""])::-webkit-datetime-edit, .input-container input[type=date]:not([value=""]) {
+  color: #000000;
+}
+.input-container select,
+.input-container select option {
+  color: #000000;
+}
+.input-container select:invalid,
+.input-container select option:disabled,
+.input-container select option[value=""] {
+  color: #999999;
+}
+.input-container .select-wrapper {
+  position: relative;
+}
+.input-container .select-wrapper::after {
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
+.input-container select:focus ~ label, .input-container select:not([value=""]) ~ label {
+  top: 12px;
+  font-size: 10px;
+}
+.input-container select:focus, .input-container select:not([value=""]) {
+  padding-top: 18px;
+}
+.input-container select:focus ~ label {
+  color: #000000;
+}
+.input-container select.input-validation-error:focus ~ label, .input-container select.input-validation-error:not([value=""]) ~ labell {
+  color: #f0687a !important;
+}
+.input-container textarea:focus ~ label, .input-container textarea:not([value=""]) ~ label {
+  top: 12px;
+  transform: translateY(-50%);
+  font-size: 10px;
+}
+.input-container textarea:focus, .input-container textarea:not([value=""]) {
+  padding-top: 18px;
+}
+.input-container textarea:focus ~ label {
+  color: #000000;
+}
+.input-container textarea.input-validation-error:focus ~ label, .input-container textarea.input-validation-error:not([value=""]) ~ label {
+  color: #f0687a !important;
+}
+
+.customfile {
+  position: relative;
+  flex: 1;
+  margin-top: 6px;
+  width: 100%;
+  max-width: 800px;
+}
+.customfile input {
+  position: absolute;
+  bottom: 0;
+  border: none;
+  height: 1px;
+  width: 1px;
+  padding: 0px;
+  margin: 0px;
+}
+.customfile input:disabled + .customfile-button {
+  cursor: default !important;
+  border-color: #ececec !important;
+  background: #ececec !important;
+  color: #b4b4b4 !important;
+}
+.customfile input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.customfile input::file-selector-button {
+  visibility: hidden;
+}
+.customfile .customfile-button-container {
+  position: relative;
+  height: auto;
+}
+.customfile .customfile-button-container .customfile-button {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  background: white;
+  padding: 8px 14px;
+  margin-bottom: 0;
+  color: #000;
+}
+.customfile .customfile-button-container .customfile-button:hover {
+  border-color: #adadad;
+  background: #e6e6e6;
+  cursor: pointer;
+}
+.customfile .customfile-button-container input:focus + .customfile-button {
+  border-color: #80bdff;
+  outline: 3px solid #bfdeff;
+  background: #e6e6e6;
+}
+.customfile .customfile-button-container .req {
+  position: absolute;
+  top: 0;
+  margin-left: 6px;
+}
+.customfile .table {
+  width: 100%;
+  border: 1px solid #ced4da;
+  margin-top: 10px;
+}
+.customfile .table thead {
+  background: #e9ecef;
+  color: #495057;
+}
+.customfile .table thead th {
+  font-weight: normal;
+  padding: 0.5rem;
+  border-top: none;
+  border-bottom: none;
+}
+.customfile .table tbody {
+  background: white;
+}
+.customfile .table tbody tr th, .customfile .table tbody tr td {
+  vertical-align: middle;
+}
+.customfile .table tbody tr td:last-child {
+  text-align: right;
+}
+.customfile .table tbody .customfile-filename {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.customfile .table tbody button {
+  outline: none;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  text-align: center;
+  padding: 0;
+  height: 40px;
+  width: 40px;
+}
+.customfile .table tbody .customfile-action:hover {
+  background: #FFF;
+}
+.customfile .table tbody .customfile-action:focus {
+  border-color: #80bdff;
+  outline: 3px solid #bfdeff;
+  background: #FFF;
+}
+.customfile .table tbody .customfile-action-none {
+  border: none !important;
+}
+.customfile .progress-container {
+  margin: 5px 0;
+  background-color: #e6e6e6;
+}
+.customfile .progress-container .progress-bar {
+  height: 10px;
+  width: 0%;
+}
+.customfile .progress {
+  background-color: #727272;
+}
+
+.hint {
+  color: #696969;
+  font-size: small;
+  margin-left: 4px;
+}
+
+.siteWrapper .PartialBody {
+  background-color: #e8e5df;
+  color: black;
+}
+.siteWrapper .PartialBody .content {
+  background-color: #e8e5df;
+}
+@media screen and (min-width: 0) {
+  .siteWrapper .PartialBody .content {
+    padding: 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  .siteWrapper .PartialBody .content {
+    padding: 2rem;
+  }
+}
+
+.siteWrapper .PartialCookiesDisabled {
+  background-color: #FFF;
+  color: #000;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 32px;
+}
+.siteWrapper .PartialCookiesDisabled a {
+  color: #000;
+  text-decoration: underline;
+}
+.siteWrapper .PartialCookiesDisabled a:visited {
+  color: #000;
+  text-decoration: underline;
+}
+.siteWrapper .PartialCookiesDisabled a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+.siteWrapper .PartialCookiesDisabled a:active {
+  color: #000;
+  text-decoration: underline;
+}
+
+.siteWrapper .PartialFooter {
+  background-color: #808080;
+  color: white;
+}
+
+.siteWrapper .PartialNavbar {
+  background-color: #212c33;
+  color: white;
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.siteWrapper .PartialNavbar .navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+.siteWrapper .PartialNavbar .navbar-container .navbar-left {
+  margin-right: auto;
+  position: relative;
+  height: 100%;
+}
+.siteWrapper .PartialNavbar .navbar-container .navbar-right {
+  margin-left: auto;
+  position: relative;
+  height: 100%;
+}
+.siteWrapper .PartialNavbar .navbar-container .navbar-section-container {
+  display: flex;
+  align-items: center;
+}
+.siteWrapper .PartialNavbar .navbar-container .navbar-logo {
+  max-width: 32px;
+}
+
+.siteWrapper .PartialNoScript {
+  background-color: #FFF;
+  color: #000;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 32px;
+}
+.siteWrapper .PartialNoScript a {
+  color: #000;
+  text-decoration: underline;
+}
+.siteWrapper .PartialNoScript a:visited {
+  color: #000;
+  text-decoration: underline;
+}
+.siteWrapper .PartialNoScript a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+.siteWrapper .PartialNoScript a:active {
+  color: #000;
+  text-decoration: underline;
+}
+
+.siteWrapper .PartialTestBar {
+  border-top: 2px solid #e3a19f;
+  border-bottom: 2px solid #641614;
+  padding: 6px 2px;
+  background-color: #c04542;
+  font-size: 12px;
+  font-family: Arial, ​Sans-Serif;
+  line-height: initial;
+  color: #FFF;
+  text-shadow: 1px 1px 1px #000;
+}
+.siteWrapper .PartialTestBar > .testBody {
+  text-align: left;
+  padding-top: 16px;
+  padding-left: 16px;
+}
+.siteWrapper .PartialTestBar a {
+  text-decoration: underline;
+  color: #FFF;
+  text-shadow: 1px 1px 1px #000;
+  cursor: pointer;
+}
+.siteWrapper .PartialTestBar a:hover {
+  text-decoration: underline;
+}
+.siteWrapper .PartialTestBar ul {
+  margin-left: 16px;
+}
+.siteWrapper .PartialTestBar ul li {
+  padding-bottom: 8px;
+}
+.siteWrapper .PartialTestBar label {
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 8px;
+}

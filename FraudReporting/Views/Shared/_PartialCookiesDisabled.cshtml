@@ -1,0 +1,13 @@
+﻿@{ Layout = null; }
+<div class="PartialCookiesDisabled" id="PartialCookiesDisabled" style="display:none;">
+    <p>This website requires that cookies are enabled. Please enable cookies in your web browser to continue.</p>
+    <p><a href="https://support.google.com/accounts/answer/61416" target="_blank">Click Here</a> to learn more about cookies and how to enable them.</p>
+    <p>Once you have enabled cookies, please <a href="@Url.Action("", "")">Click Here</a> to continue.</p>
+</div>
+<script>
+    var cookiesEnabled = ("cookie" in document && (document.cookie.length > 0 || (document.cookie = "testCookiesEnabled").indexOf.call(document.cookie, "testCookiesEnabled") > -1));
+    if (cookiesEnabled !== true) {
+        console.log('Cookies are not enabled');
+        document.getElementById('PartialCookiesDisabled').style.display = '';
+    }
+</script>

@@ -1,0 +1,36 @@
+﻿#{$classSiteWrapper} .PartialNavbar {
+    background-color: $navbar-bg-color;
+    color: $navbar-text-color;
+    min-height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .navbar-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0.5rem 1rem;
+
+        .navbar-left {
+            margin-right: auto;
+            position: relative;
+            height: 100%;
+        }
+
+        .navbar-right {
+            margin-left: auto;
+            position: relative;
+            height: 100%;
+        }
+
+        .navbar-section-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            max-width: 32px;
+        }
+    }
+}
